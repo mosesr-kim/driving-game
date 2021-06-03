@@ -6,3 +6,15 @@ body {
 img {
   width: 150px;
 }
+
+.north {
+  transform: rotate(0.75turn);
+}
+
+.south {
+  transform: rotate(0.25turn);
+}
+
+.west {
+  transform: rotate(0.5turn);
+}
