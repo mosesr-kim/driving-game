@@ -3,6 +3,13 @@ var $car = document.querySelector('#car');
 window.addEventListener('keydown', turnCar);
 window.addEventListener('keydown', startCar);
 
+var car = {
+  carLeftX: 0,
+  carTopY: 0,
+  moving: false,
+  movingID: 0
+};
+
 function turnCar(event) {
   if (event.keyCode === 38) {
     $car.className = 'north';
@@ -20,15 +27,20 @@ function turnCar(event) {
 
 function startCar(event) {
   if (event.keyCode === 32) {
-    var intervalID = setInterval(moveCar, 16);
+    if (car.moving === false) {
+      var IntervalID = setInterval(moveCar, 16);
+      car.movingID = IntervalID;
+      car.moving = true;
+    } else {
+      clearInterval(car.movingID);
+      car.moving = false;
+    }
   }
 }
 
 function carLocation() {
-  var car = {
-    carLeftX: $car.getBoundingClientRect().x,
-    carTopY: $car.getBoundingClientRect().y
-  };
+  car.carLeftX = $car.getBoundingClientRect().x;
+  car.carTopY = $car.getBoundingClientRect().y;
   return car;
 }
 
